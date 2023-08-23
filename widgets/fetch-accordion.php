@@ -816,7 +816,7 @@ class Elementor_EFaq_Dynamic_FAQ extends \Elementor\Widget_Base {
 
 			$this->render_faqs( $faqs, $settings );
 		} else {
-			$this->render_error();
+			$this->render_error( $settings );
 		}
 	}
 
@@ -874,12 +874,11 @@ class Elementor_EFaq_Dynamic_FAQ extends \Elementor\Widget_Base {
 		echo '</div>';
 	}
 
-	private function render_error() {
-		?>
-
-		<p>todo: error</p>
-
-		<?php
+	private function render_error( $settings ) {
+		$category_tag = $settings['category_html_tag'];
+		echo sprintf( '<%1$s class="efaq-category">%2$s</%1$s>', $category_tag,
+			'The FAQs are not available currently. Please check back later.'
+		);
 	}
 
 	private function sort_faqs( $faqs, $settings ) {
